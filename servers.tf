@@ -13,10 +13,16 @@ provider "digitalocean" {
 }
 
 # Create a web server
+data "digitalocean_ssh_key" "omykolaichenko"  {
+  name = "omykolaichenko"
+}
+data "digitalocean_ssh_key" "bmykkolaichenko" {
+  name = "bmykkolaichenko"
+}
 resource "digitalocean_droplet" "web" {
   image  = "ubuntu-20-04-x64"
   name   = "terraform-web-1"
   region = "nyc3"
   size   = "s-1vcpu-1gb"
-  ssh_keys = [28718461, 28684255]
+  ssh_keys = [data.digitalocean_ssh_key.omykolaichenko.id, data.digitalocean_ssh_key.bmykkolaichenko.id ]
 }
