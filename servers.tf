@@ -20,8 +20,9 @@ data "digitalocean_ssh_key" "bmykkolaichenko" {
   name = "bmykkolaichenko"
 }
 resource "digitalocean_droplet" "web" {
+  count = 3
   image  = "ubuntu-20-04-x64"
-  name   = "terraform-web-1"
+  name   = "web-server-1"  # count.index
   region = "nyc3"
   size   = "s-1vcpu-1gb"
   ssh_keys = [data.digitalocean_ssh_key.omykolaichenko.id, data.digitalocean_ssh_key.bmykkolaichenko.id ]
