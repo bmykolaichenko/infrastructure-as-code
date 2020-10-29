@@ -14,3 +14,15 @@
       copy:
         src: test.txt
         dest: /tmp/test.txt
+
+   tasks:
+    - name: Add the user 'bog' a primary group of 'sudo'
+      user:
+        name: bog
+        group: sudo
+
+   tasks:
+    - name: install php latest
+        package:
+        name: php
+        state: install
