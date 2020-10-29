@@ -1,0 +1,12 @@
+# https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+
+[web-servers]
+68.183.146.103
+104.131.66.235
+104.131.181.62
+
+[db-servers]
+# put IP here
+
+[load-balancers]
+# put IP here
