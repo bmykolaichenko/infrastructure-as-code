@@ -10,7 +10,7 @@
         name: nginx
         state: latest
 
-     - name: write the apache config file
+    - name: write the apache config file
       copy:
         src: test.txt
         dest: /tmp/test.txt
@@ -22,16 +22,20 @@
         group: sudo
 
       tasks:
-      - name: Install php
+       - name: Install php
          apt:
-          naem: "{{ item }}"
+          name: "{{ item }}"
           state: present
-        loop:
-            -php-curl
-            -php-gd
-            -php-intl
-            -php-mbstring
-            -php-soap
-            -php-xml
-            -php-xmlrpc
-            -php-zip
+         loop:
+            - php-curl
+            - php-gd
+            - php-intl
+            - php-mbstring
+            - php-soap
+            - php-xml
+            - php-xmlrpc
+            - php-zip
+
+       - name: Enable php-fpr
+         systemd:
+           name: php7.2-fpr
