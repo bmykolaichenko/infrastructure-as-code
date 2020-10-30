@@ -10,19 +10,28 @@
         name: nginx
         state: latest
 
-    - name: write the apache config file
+     - name: write the apache config file
       copy:
         src: test.txt
         dest: /tmp/test.txt
 
-   tasks:
+      tasks:
     - name: Add the user 'bog' a primary group of 'sudo'
       user:
         name: bog
         group: sudo
 
-   tasks:
-    - name: install php latest
-        package:
-        name: php
-        state: install
+      tasks:
+      - name: Install php
+         apt:
+          naem: "{{ item }}"
+          state: present
+        loop:
+            -php-curl
+            -php-gd
+            -php-intl
+            -php-mbstring
+            -php-soap
+            -php-xml
+            -php-xmlrpc
+            -php-zip
