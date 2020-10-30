@@ -1,0 +1,28 @@
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
+---
+- name: update web servers
+  hosts: web-servers
+  remote_user: root
+
+  tasks:
+    - name: install nginx latest version
+      package:
+        name: nginx
+        state: latest
+
+    - name: write the apache config file
+      copy:
+        src: test.txt
+        dest: /tmp/test.txt
+
+   tasks:
+    - name: Add the user 'bog' a primary group of 'sudo'
+      user:
+        name: bog
+        group: sudo
+
+   tasks:
+    - name: install php latest
+        package:
+        name: php
+        state: install
