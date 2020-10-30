@@ -27,14 +27,14 @@ resource "digitalocean_droplet" "web" {
   size   = "s-1vcpu-1gb"
   ssh_keys = [data.digitalocean_ssh_key.omykolaichenko.id, data.digitalocean_ssh_key.bmykkolaichenko.id ]
 }
-resource "digitalocean_droplet" "wed-db" {
+resource "digitalocean_droplet" "web-db" {
   image = "ubuntu-20-04-x64"
   name = "db-server-1"
   region = "nyc3"
   size = "s-1vcpu-1gb"
 ssh_keys = [data.digitalocean_ssh_key.omykolaichenko.id, data.digitalocean_ssh_key.bmykkolaichenko.id]
 }
-resource "digitalocean_droplet" "wed-lb" {
+resource "digitalocean_droplet" "web-lb" {
   image = "ubuntu-20-04-x64"
   name = "lb-server-1"
   region = "nyc3"
