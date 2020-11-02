@@ -1,0 +1,64 @@
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
+---
+- name: update web servers
+  hosts: web-servers
+  remote_user: root
+
+  tasks:
+    - name: install nginx latest version
+      package:
+        name: nginx
+        state: latest
+
+    - name: write the apache config file
+      copy:
+        src: test.txt
+        dest: /tmp/test.txt
+
+    - name: Add the user 'bog' a primary group of 'sudo'
+      user:
+        name: bog
+        group: sudo
+
+    - name: Install php
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+            - php-curl
+            - php-gd
+            - php-intl
+            - php-mbstring
+            - php-soap
+            - php-xml
+            - php-xmlrpc
+            - php-zip
+            - php-fpm
+            - php-mysql
+
+    - name: Enabled php-fpm
+      systemd:
+         name: php7.4-fpm
+         enabled: yes
+
+    - name: Create tmp dir
+      file:
+        path: /home/vagrant/tmp
+        state: directory
+        owner: root
+        group: root
+        mode: '666'
+
+    - name: Download wp dist
+      get_url:
+        url: https://wordpress.org/latest.tar.gz
+        dest: /home/vagrant/tmp/lastest.tar.gz
+
+    - name: Unarchive wp
+      unarchive:
+        src: https://wordpress.org/latest.tar.gz
+        dest: /var/www/html/
+        remote_src: yes
+        mode: '775'
+        owner: www-data
+        group: www-data
