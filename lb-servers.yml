@@ -1,0 +1,7 @@
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
+---
+- name: update lb-server
+  hosts: lb-servers
+  remote_user: root
+
+  tasks:
