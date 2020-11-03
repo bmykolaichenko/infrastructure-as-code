@@ -10,6 +10,10 @@
         name: mysql-server
         state: latest
 
+    - name: Install python MySQL module
+      apt:
+        name: python3-mysqldb
+
     - name: Set MySQL root Password
       mysql_user:
         login_host: 'localhost'
