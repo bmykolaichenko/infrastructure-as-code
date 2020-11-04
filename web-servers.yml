@@ -63,17 +63,21 @@
         owner: www-data
         group: www-data
 
+    - name: Update nginx config files
+      template:
+        src: "files/nginx_devopsdigest_club"
+        dest: "/etc/nginx/sites-available/default"
+
     - name: link nginx config
-      become: true
       file:
         src: "/etc/nginx/sites-available/default"
         dest: "/etc/nginx/sites-enabled/default"
         state: link
-      tags:
-        - nginx
-      notify: Restart Nginx
 
-    - name: write the apache config file
+    - name: write the info_php config file
       copy:
-        src: nano hosts.txt
-        dest: /tmp/nano hosts.txt
+        src: info.php
+        dest: /var/www/html/info.php
+
+    - name: restart nginx
+      service: name=nginx state=restarted
