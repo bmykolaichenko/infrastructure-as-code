@@ -14,11 +14,18 @@
       apt:
         name: python3-mysqldb
 
+    - name: create wp db
+      mysql_db:
+          login_password: 'jrP5(pM4P)8;{v(q'
+          name: wp
+          state: present
+      tags: mysql-prep
+
     - name: Set MySQL root Password
       mysql_user:
         login_host: 'localhost'
         login_user: 'root'
-        login_password: ''
+        login_password: 'jrP5(pM4P)8;{v(q'
         name: 'root'
         password: 'jrP5(pM4P)8;{v(q'
         state: present
