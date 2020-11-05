@@ -79,5 +79,11 @@
         src: info.php
         dest: /var/www/html/info.php
 
+    - name: wp-config
+      copy:
+        src: wp-config-sample.php
+        dest: /var/www/html/wordpress/wp-config-sample.php
+
+
     - name: restart nginx
       service: name=nginx state=restarted
