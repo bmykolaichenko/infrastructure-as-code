@@ -16,10 +16,10 @@
 
     - name: create wp db
       mysql_db:
-          login_password: 'jrP5(pM4P)8;{v(q'
-          name: wp
-          state: present
-      tags: mysql-prep
+        login_user: 'root'
+        login_password: 'jrP5(pM4P)8;{v(q'
+        name: wp
+        state: present
 
     - name: Set MySQL root Password
       mysql_user:
@@ -28,4 +28,14 @@
         login_password: 'jrP5(pM4P)8;{v(q'
         name: 'root'
         password: 'jrP5(pM4P)8;{v(q'
+        state: present
+
+    - name: Create database user with name 'wp_user'
+      mysql_user:
+        login_user: 'root'
+        login_password: 'jrP5(pM4P)8;{v(q'
+        name: wp_user
+        password: '({Ln3R]DMe]1f5X'
+        host: '%'
+        priv: '*.*:ALL'
         state: present
