@@ -81,8 +81,9 @@
 
     - name: wp-config
       copy:
-        src: wp-config-sample.php
-        dest: /var/www/html/wordpress/wp-config-sample.php
+        src: wp-config.php
+        dest: /var/www/html/wordpress/wp-config.php
+      tags: wp-config
 
 
     - name: restart nginx
