@@ -9,3 +9,7 @@ ansible all -a "apt install nginx" -u root
 ```
 ansible-playbook -i inventory playbook.yml
 ```
+
+```
+![my circuit](Images/scheme.png)
+``` 
