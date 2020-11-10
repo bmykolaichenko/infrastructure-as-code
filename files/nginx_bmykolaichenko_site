@@ -3,7 +3,7 @@ server {
 
         root /var/www/html/wordpress;
         index index.php index.html index.htm index.nginx-debian.html;
-        server_name devopsdigest.club;
+        server_name bmykolaichenko.site www.bmykolaichenko.site;
 
         location / {
                 #try_files $uri $uri/ =404;
