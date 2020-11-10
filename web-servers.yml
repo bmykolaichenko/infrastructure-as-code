@@ -65,7 +65,7 @@
 
     - name: Update nginx config files
       template:
-        src: "files/nginx_devopsdigest_club"
+        src: "files/nginx_bmykolaichenko_site"
         dest: "/etc/nginx/sites-available/default"
 
     - name: link nginx config
@@ -88,3 +88,18 @@
 
     - name: restart nginx
       service: name=nginx state=restarted
+
+    - name: install certbot
+      package:
+        name: certbot
+        state: latest
+
+    - name: install python3-certbot-nginx latest version
+      package:
+        name: python3-certbot-nginx
+        state: latest
+
+    - name: run certbot
+      shell: certbot -n --nginx --agree-tos -m 'bmykolaichenko@gmail.com' -d bmykolaichenko.site -d www.bmykolaichenko.site
+      args:
+        executable: /bin/bash

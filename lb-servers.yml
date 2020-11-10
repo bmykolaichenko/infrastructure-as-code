@@ -5,3 +5,16 @@
   remote_user: root
 
   tasks:
+
+    - name: install haproxy latest version
+      package:
+        name: haproxy
+        state: latest
+
+    - name: haproxy config file
+      copy:
+        src: "files/haproxy"
+        dest: "/etc/haproxy/haproxy.cfg"
+
+    - name: restart haproxy
+      service: name=haproxy state=restarted
