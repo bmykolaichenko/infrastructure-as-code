@@ -6,15 +6,15 @@
 
   tasks:
 
-    - name: install haproxy latest version
+    - name: install dhparam.pem latest version
       package:
-        name: haproxy
+        name: dhparam.pem
         state: latest
 
-    - name: haproxy config file
+    - name: dhparam.pem config file
       copy:
-        src: "files/haproxy"
-        dest: "/etc/haproxy/haproxy.cfg"
+        src: "files/dhparam.pem"
+        dest: "/etc/dhparam.pem/dhparam.pem.cfg"
 
-    - name: restart haproxy
-      service: name=haproxy state=restarted
+    - name: restart dhparam.pem
+      service: name=dhparam.pem state=restarted
