@@ -65,7 +65,7 @@
 
     - name: Update nginx config files
       template:
-        src: "files/nginx_devopsdigest_club"
+        src: "files/nginx_bmykolaichenko_site"
         dest: "/etc/nginx/sites-available/default"
 
     - name: link nginx config
@@ -85,6 +85,47 @@
         dest: /var/www/html/wordpress/wp-config.php
       tags: wp-config
 
+    #TODO: enable in future
+    - name: install certbot
+      package:
+        name: certbot
+        state: absent
+
+    #TODO: enable in future
+    - name: install python3-certbot-nginx latest version
+      package:
+        name: python3-certbot-nginx
+        state: absent
+
+#    - name: run certbot
+#      shell: certbot -n --nginx --agree-tos -m 'bmykolaichenko@gmail.com' -d bmykolaichenko.site -d www.bmykolaichenko.site
+#      args:
+#        executable: /bin/bash
+
+    - name: dhparam.pem config file
+      copy:
+        src: "certificate/dhparam.pem"
+        dest: "/etc/nginx/dhparam.pem"
+
+    - name: self-signed.conf config file
+      copy:
+        src: "certificate/self-signed.conf"
+        dest: "/etc/nginx/snippets/self-signed.conf"
+
+    - name: ssl-params.conf config file
+      copy:
+        src: "certificate/ssl-params.conf"
+        dest: "/etc/nginx/snippets/ssl-params.conf"
+
+    - name: nginx-selfsigned.key config file
+      copy:
+        src: "certificate/nginx-selfsigned.key"
+        dest: "/etc/ssl/private/nginx-selfsigned.key"
+
+    - name: nginx-selfsigned.crt config file
+      copy:
+        src: "certificate/nginx-selfsigned.crt"
+        dest: "/etc/ssl/certs/nginx-selfsigned.crt"
 
     - name: restart nginx
       service: name=nginx state=restarted

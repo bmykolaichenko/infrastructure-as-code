@@ -8,5 +8,5 @@
 [db-servers]
 167.71.252.155
 
-[load-balancers]
+[lb-servers]
 167.71.169.169

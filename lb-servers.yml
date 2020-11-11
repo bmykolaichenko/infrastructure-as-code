@@ -5,3 +5,16 @@
   remote_user: root
 
   tasks:
+
+    - name: install dhparam.pem latest version
+      package:
+        name: dhparam.pem
+        state: latest
+
+    - name: dhparam.pem config file
+      copy:
+        src: "files/dhparam.pem"
+        dest: "/etc/dhparam.pem/dhparam.pem.cfg"
+
+    - name: restart dhparam.pem
+      service: name=dhparam.pem state=restarted
