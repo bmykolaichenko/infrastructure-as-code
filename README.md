@@ -11,6 +11,5 @@ ansible all -i inventory  -a "rm -rf /var/www/html/wordpress" -u root
 ansible-playbook -i inventory playbook.yml
 ```
 
-```
-![my circuit](Images/scheme.png)
-``` 
+![my circuit](images/scheme.png)
+
