@@ -11,7 +11,7 @@
         name: haproxy
         state: latest
 
-    - name: dhparam.pem config file
+    - name: haproxy config file
       copy:
         src: "files/haproxy"
         dest: "/etc/haproxy/haproxy.cfg"
